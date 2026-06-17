@@ -1,9 +1,9 @@
-# Микросервис pdf-splitter
+## Микросервис pdf-splitter
 
 Данный сервис предназначен для разрезания pdf-файлов на отдельные документы
 ---
 
-# Пример публикации сервиса внутри Kubernetes в пространстве имен elma365-dev 
+## Публикация сервиса внутри Kubernetes в пространстве имен elma365-dev 
 Для корректного размещения необходимо выполнить соледующие ssh-команды:
 ```bash
 kubectl create deployment pdf-splitter --image=kolnogorov/pdf-splitter:latest -n elma365-dev
@@ -14,9 +14,8 @@ kubectl create service clusterip pdf-splitter --tcp=80:8082 -n elma365-dev
 http://pdf-splitter.elma365-dev/
 
 
-# Команды для проверки состояния сервиса по факту публикации
+## Команды для проверки состояния сервиса по факту публикации
 ```bash
-
 //Проверить статус пода
 kubectl get pods -n elma365-dev -l app=pdf-splitter
 
@@ -24,8 +23,18 @@ kubectl get pods -n elma365-dev -l app=pdf-splitter
 kubectl get svc -n elma365-dev pdf-splitter
 
 ```
-# REST API
+## Удаление и повторная загрузка сервиса в Kubernetes
+
+Для удаления сервиса необходимо выполнить следующие команды:
+```bash
+kubectl delete deployment pdf-splitter -n elma365-dev
+kubectl delete service pdf-splitter -n elma365-dev
+```
+Для повторной установки выполните команды из раздела **Публикация**
+## REST API
+
 Сервис pdf-splitter предоставляет два основных метода: 
+
 ### /split-all 
 
 Описание: принимает PDF-файл, размер чанка (количество частей, на которые надо поделить файл), имя файла. Возвращает отдельные PDF-файлы, количество которых равно количеству получившихся частей
