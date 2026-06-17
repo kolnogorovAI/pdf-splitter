@@ -48,7 +48,7 @@ kubectl get svc -n elma365-dev pdf-splitter
       "pageStart": 1,
       "pageEnd": 4,
       "size": 256000,
-      "data": "JVBERi0xLjQK...",
+      "data": "JVBERi0xLjcKJYG...",
       "fileName": "документ стр_1-4.pdf"
     }
   ]
@@ -57,7 +57,6 @@ kubectl get svc -n elma365-dev pdf-splitter
   * Пример ответа при ошибках: 
   ```json
   {
-  "success": false,
   "error": "PDF файл защищен паролем."
   }
   ```
@@ -75,25 +74,41 @@ kubectl get svc -n elma365-dev pdf-splitter
   {
   "success": true,
   "totalPages": 10,
-  "totalLetters": 3,
+  "totalLetters": 2,
   "processingTimeMs": 1200,
   "letters": [
     {
       "letterIndex": 1,
-      "template": "1-3",
-      "pages": [1, 2, 3],
-      "pageCount": 3,
-      "fileName": "документ письмо_стр_1,2,3.pdf",
-      "size": 128000,
-      "data": "JVBERi0xLjQK..."
-    }
+      "template": "1-5",
+      "pages": [1,
+                2,
+                3,
+                4,
+                5],
+      "pageCount": 5,
+      "fileName": "документ письмо_стр_1,2,3,4,5.pdf",
+      "size": 86547,
+      "data": "JVBERi0xLjcKJYG..."
+    },
+    {
+      "letterIndex": 2,
+      "template": "6-10",
+      "pages": [6,
+                7,
+                8,
+                9,
+                10],
+      "pageCount": 5,
+      "fileName": "документ письмо_стр_6,7,8,9,10.pdf",
+      "size": "29378",
+      "data": "JVBERi0xLjcKJYG..."
+    }  
   ]
   }
   ```
   * Пример ответа при ошибках:
   ```json
   {
-  "success": false,
   "error": "Шаблон нарезки не указан"
   }
   ```
