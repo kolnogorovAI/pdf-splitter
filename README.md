@@ -50,8 +50,24 @@ kubectl get svc -n elma365-dev pdf-splitter
       "size": 256000,
       "data": "JVBERi0xLjcKJYG...",
       "fileName": "документ стр_1-4.pdf"
-    }
-  ]
+    },
+    {
+      "partIndex": 2,
+      "pageStart": 5,
+      "pageEnd": 8,
+      "size": 258000,
+      "data": "JVBERi0xLjcKJYG...",
+      "fileName": "документ стр_5-8.pdf"
+    },
+    {
+      "partIndex": 3,
+      "pageStart": 9,
+      "pageEnd": 10,
+      "size": 124000,
+      "data": "JVBERi0xLjcKJYG...",
+      "fileName": "документ стр_9-10.pdf"
+      }
+    ]
   } 
   ```
   * Пример ответа при ошибках: 
@@ -102,8 +118,8 @@ kubectl get svc -n elma365-dev pdf-splitter
       "fileName": "документ письмо_стр_6,7,8,9,10.pdf",
       "size": "29378",
       "data": "JVBERi0xLjcKJYG..."
-    }  
-  ]
+      }  
+    ]
   }
   ```
   * Пример ответа при ошибках:
