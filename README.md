@@ -24,6 +24,78 @@ kubectl get pods -n elma365-dev -l app=pdf-splitter
 kubectl get svc -n elma365-dev pdf-splitter
 
 ```
+# REST API
+Сервис pdf-splitter предоставляет два основных метода: 
+### /split-all 
+Описание: принимает pdf-файл, размер чанка (количество частей, на которые надо поделить файл), имя файла и отдает пачку файлов обратно
+Тип запроса: form-data
+Поля формы: 
+* `pdf` - файл
+* `chunkSize` - количество частей
+* `originalFileName` - исходное название файла
+  
+* Возвращаемый JSON (пример успешного ответа):
+  ```json
+  {
+  "success": true,
+  "totalParts": 3,
+  "totalPages": 10,
+  "chunkSize": 4,
+  "processingTimeMs": 850,
+  "parts": [
+    {
+      "partIndex": 1,
+      "pageStart": 1,
+      "pageEnd": 4,
+      "size": 256000,
+      "data": "JVBERi0xLjQK...",
+      "fileName": "документ стр_1-4.pdf"
+    }
+  ]
+  } 
+  ```
+  * Пример ответа при ошибках: 
+```json
+{
+  "success": false,
+  "error": "PDF файл защищен паролем."
+}
+```
 
+### /split-pdf
+Описание: принимает pdf-файл, шаблон нарезки, имя файла и отдает пачку файлов обратно
+Тип запроса: form-data
+Поля формы: 
+* `pdf` - файл
+* `template` - шаблон нарезки
+* `originalFileName` - исходное название файла
+  
+* Возвращаемый JSON (пример успешного ответа):
+```json
+  {
+  "success": true,
+  "totalPages": 10,
+  "totalLetters": 3,
+  "processingTimeMs": 1200,
+  "letters": [
+    {
+      "letterIndex": 1,
+      "template": "1-3",
+      "pages": [1, 2, 3],
+      "pageCount": 3,
+      "fileName": "документ письмо_стр_1,2,3.pdf",
+      "size": 128000,
+      "data": "JVBERi0xLjQK..."
+    }
+  ]
+}
+```
+* Пример ответа при ошибках: 
+```json
+{
+  "success": false,
+  "error": "Шаблон нарезки не указан"
+}
+```
 
 
