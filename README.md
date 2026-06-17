@@ -55,12 +55,12 @@ kubectl get svc -n elma365-dev pdf-splitter
   } 
   ```
   * Пример ответа при ошибках: 
-```json
-{
+  ```json
+  {
   "success": false,
   "error": "PDF файл защищен паролем."
-}
-```
+  }
+  ```
 
 ### /split-pdf
 Описание: принимает pdf-файл, шаблон нарезки, имя файла и отдает пачку файлов обратно
@@ -71,7 +71,7 @@ kubectl get svc -n elma365-dev pdf-splitter
 * `originalFileName` - исходное название файла
   
 * Возвращаемый JSON (пример успешного ответа):
-```json
+  ```json
   {
   "success": true,
   "totalPages": 10,
@@ -88,14 +88,14 @@ kubectl get svc -n elma365-dev pdf-splitter
       "data": "JVBERi0xLjQK..."
     }
   ]
-}
-```
-* Пример ответа при ошибках: 
-```json
-{
+  }
+  ```
+  * Пример ответа при ошибках:
+  ```json
+  {
   "success": false,
   "error": "Шаблон нарезки не указан"
-}
-```
+  }
+  ```
 
 
